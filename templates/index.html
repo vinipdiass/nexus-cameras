@@ -22,7 +22,21 @@
     <!-- Display the user's webcam feed -->
     <video id="video" width="400" autoplay muted></video>
     <!-- Display the processed video feed -->
-    <img id="processedVideo" src="{{ url_for('video_feed') }}" width="400" />
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <img id="processedVideo" width="400" />
+
+    <script src="/static/script.js"></script> <!-- Ajuste o caminho conforme necessário -->
+    <script>
+        // Function to update the processed video feed
+        function updateProcessedVideo() {
+            const processedVideo = document.getElementById('processedVideo');
+            processedVideo.src = `http://localhost:8000/video_feed?${new Date().getTime()}`;
+        }
+
+        // Call updateProcessedVideo every second to refresh the image
+        setInterval(updateProcessedVideo, 1000);
+
+        // Start the video stream
+        startVideo();
+    </script>
 </body>
 </html>

@@ -29,7 +29,7 @@ function sendFrames() {
             context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
             canvas.toBlob(blob => {
-                fetch('/upload_frame', {
+                fetch('http://localhost:8000/upload_frame', { // Certifique-se de que a URL está correta
                     method: 'POST',
                     body: blob
                 }).catch(err => {
